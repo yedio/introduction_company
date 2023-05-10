@@ -1,5 +1,4 @@
-import Script from 'next/script';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 declare global {
   interface Window {
@@ -8,6 +7,9 @@ declare global {
 }
 
 export default function Map() {
+  const locationX = 33.450701;
+  const locationY = 126.570667;
+
   useEffect(() => {
     const mapScript = document.createElement('script');
 
@@ -20,10 +22,31 @@ export default function Map() {
       window.kakao.maps.load(() => {
         const mapContainer = document.getElementById('map');
         const mapOption = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          center: new window.kakao.maps.LatLng(locationX, locationY), // 지도의 중심좌표
           level: 3, // 지도의 확대 레벨
         };
-        new window.kakao.maps.Map(mapContainer, mapOption);
+        const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        // 지도 & 스카이뷰 옵션
+        const mapTypeControl = new window.kakao.maps.MapTypeControl();
+        map.addControl(
+          mapTypeControl,
+          window.kakao.maps.ControlPosition.TOPRIGHT
+        );
+
+        // 줌 옵션
+        const zoomControl = new window.kakao.maps.ZoomControl();
+        map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+
+        // 마커 표시
+        const markerPosition = new window.kakao.maps.LatLng(
+          locationX,
+          locationY
+        );
+        const marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+        });
+        marker.setMap(map);
       });
     };
     mapScript.addEventListener('load', onLoadKakaoMap);
