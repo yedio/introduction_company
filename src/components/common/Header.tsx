@@ -1,16 +1,6 @@
 export default function Header() {
   return (
-    <header
-      style={{
-        display: 'flex',
-        padding: '0 15px',
-        alignItems: 'center',
-        width: '100vw',
-        height: '60px',
-        fontSize: '30px',
-        backgroundColor: 'navy',
-      }}
-    >
+    <header className="flex items-center px-[15px] w-full h-[60px] text-[30px] bg-green-950">
       ❄️
     </header>
   );
