@@ -61,5 +61,5 @@ export default function Map() {
     mapScript.addEventListener('load', onLoadKakaoMap);
   }, []);
 
-  return <div id="map" className="w-[500px] h-[400px] bg-grey-40"></div>;
+  return <div id="map" className="w-[500px] h-[400px] bg-grey-40" />;
 }
