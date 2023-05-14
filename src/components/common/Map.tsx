@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { cls } from '../../libs/client/utils';
 
 declare global {
   interface Window {
@@ -6,7 +7,11 @@ declare global {
   }
 }
 
-export default function Map() {
+interface MapProps {
+  providedStyle?: string; //tw
+}
+
+export default function Map({ providedStyle }: MapProps) {
   const address = '서울 종로구 세종로 1-68';
 
   useEffect(() => {
@@ -61,5 +66,10 @@ export default function Map() {
     mapScript.addEventListener('load', onLoadKakaoMap);
   }, []);
 
-  return <div id="map" className="w-[500px] h-[400px] bg-grey-40" />;
+  return (
+    <div
+      id="map"
+      className={cls('w-full h-[400px] bg-grey-40', providedStyle ?? '')}
+    />
+  );
 }

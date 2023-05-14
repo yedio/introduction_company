@@ -9,8 +9,14 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Header />
-      {children}
+      <PageLayout>{children}</PageLayout>
       <Footer />
     </>
   );
 }
+
+const PageLayout = ({ children }: Props) => {
+  return (
+    <div className="w-[1024px] sm:w-full my-0 mx-auto sm:px-4">{children}</div>
+  );
+};
